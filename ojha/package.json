@@ -1,0 +1,14 @@
+{
+  "name": "civic-report-backend",
+  "version": "1.0.0",
+  "description": "Backend for the CivicReport website",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "multer": "^1.4.3"
+  }
+}

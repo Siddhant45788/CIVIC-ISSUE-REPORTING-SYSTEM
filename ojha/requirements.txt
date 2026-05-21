@@ -1,0 +1,6 @@
+# Core dependencies for the Vision Analysis Engine
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Optional: Deep Learning dependencies (if using the legacy CNN path)
+# tensorflow>=2.15.0

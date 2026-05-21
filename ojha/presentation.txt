@@ -1,0 +1,82 @@
+Slide 1: Title Slide
+Title: Smart Civic Issue Reporting System
+Subtitle: A web-based solution for instant reporting of civic issues
+Presented by: [Your Name/Team Name]
+Date: [Date]
+
+Slide 2: Introduction
+Title: Introduction
+Content:
+*   The Smart Civic Issue Reporting System is a web-based platform designed to empower citizens to report civic issues directly to the concerned authorities.
+*   This system aims to bridge the gap between citizens and municipal corporations, ensuring timely resolution of problems.
+*   Key features include image-based reporting, real-time tracking, and automated complaint routing.
+
+Slide 3: Problem Statement
+Title: Problem Statement
+Content:
+*   Inefficient and slow manual complaint registration processes.
+*   Lack of a centralized system to track the status of complaints.
+*   Difficulty in identifying the exact location of the issue.
+*   Delayed response from authorities, leading to public dissatisfaction.
+*   No accountability for unresolved issues.
+
+Slide 4: Literature Survey
+Title: Literature Survey
+Content:
+*   Existing systems often rely on manual intervention, which is time-consuming and prone to errors.
+*   Some platforms lack real-time tracking and feedback mechanisms.
+*   Mobile apps for civic issue reporting exist, but web-based accessibility is often limited.
+*   Our proposed system integrates the best features from existing research and adds unique functionalities like automated severity analysis.
+
+Slide 5: Proposed System
+Title: Proposed System
+Content:
+*   A web-based portal for citizens to register complaints with photographic evidence.
+*   GPS integration to automatically fetch the location of the issue.
+*   A machine learning model to analyze the uploaded image and categorize the complaint (e.g., pothole, garbage, streetlight).
+*   An admin dashboard for municipal authorities to view, assign, and track complaints.
+*   Automated notifications to citizens and officials regarding the status of the complaint.
+
+Slide 6: Methodology
+Title: Methodology
+Content:
+1.  User Registration and Login: Citizens create an account or log in.
+2.  Complaint Registration: Users fill a simple form, upload an image of the issue, and submit.
+3.  Image Analysis: The ML model processes the image to identify the issue type and severity.
+4.  Complaint Routing: The system automatically forwards the complaint to the relevant department.
+5.  Resolution and Feedback: The assigned authority resolves the issue and updates the status. The citizen is notified and can provide feedback.
+
+Slide 7: System Architecture
+Title: System Architecture
+Content:
+(This slide should ideally have a diagram. Below is a textual description of the architecture)
+*   Frontend (User Interface):
+    *   Citizen Web Portal (HTML, CSS, JavaScript)
+    *   Admin Dashboard
+*   Backend (Server-side):
+    *   Web Server (e.g., Node.js with Express)
+    *   Database (e.g., MongoDB or MySQL)
+    *   Machine Learning Model (e.g., TensorFlow/Keras)
+    *   RESTful APIs to connect frontend and backend
+
+Slide 8: Advantages
+Title: Advantages
+Content:
+*   Fast and efficient complaint registration.
+*   Increased transparency and accountability.
+*   Timely resolution of civic issues.
+*   Easy for both citizens and authorities to use.
+*   Data-driven insights for better urban planning.
+
+Slide 9: Conclusion
+Title: Conclusion
+Content:
+*   The Smart Civic Issue Reporting System is a significant step towards building smarter cities.
+*   By leveraging technology, we can create a more responsive and efficient system for managing civic issues.
+*   This project has the potential to improve the quality of life for citizens and foster a sense of community ownership.
+
+Slide 10: Thank You & Q&A
+Title: Thank You
+Content:
+*   Questions and Answers
+*   Contact: [Your Email]

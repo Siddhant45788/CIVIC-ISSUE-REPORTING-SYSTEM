@@ -1,0 +1,187 @@
+npm <!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CivicReport | Minimal AI Tracking</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <style type="text/tailwindcss">
+        body { font-family: 'Geist', sans-serif; }
+        .glass { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        
+        /* Bot Message: High Contrast Blue */
+        .bot-msg-ai { 
+            background-color: #2563eb; 
+            color: white; 
+            border-radius: 1rem 1rem 1rem 0; 
+            padding: 0.75rem 1rem; 
+            align-self: flex-start; 
+            max-width: 85%;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+        }
+        
+        /* User Message: Dark Zinc with Border */
+        .bot-msg-user { 
+            background-color: #18181b; 
+            color: white; 
+            border: 1px solid #3f3f46; 
+            border-radius: 1rem 1rem 0 1rem; 
+            padding: 0.75rem 1rem; 
+            align-self: flex-end; 
+            max-width: 85%;
+        }
+        
+        /* UX: Smooth Transitions */
+        .btn-hover { @apply transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:shadow-[0_0_20px_rgba(59,130,246,0.3)]; }
+        .input-focus { @apply focus:border-blue-500 focus:bg-zinc-900/80 transition-all duration-200; }
+        
+        /* UX: Loading Spinner */
+        .loader { border-top-color: transparent; border-radius: 50%; width: 1.25rem; height: 1.25rem; animation: spin 0.8s linear infinite; @apply border-2 border-white; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="bg-[#050505] text-zinc-100 selection:bg-blue-500/30">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 border-b border-zinc-900 bg-black/50 backdrop-blur-md">
+        <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-lg font-bold tracking-tighter group">
+                Civic<span class="text-blue-500 group-hover:text-white transition-colors">Report.</span>
+            </a>
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
+                <a href="#report" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 hover:after:w-full after:transition-all">Report</a>
+                <a href="#track" class="hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-[1px] after:bg-blue-500 hover:after:w-full after:transition-all">Track</a>
+            </div>
+            <a href="#report" class="bg-white text-black px-5 py-2 rounded-full text-sm font-bold btn-hover">Start Now</a>
+        </div>
+    </nav>
+
+    <main class="max-w-5xl mx-auto px-6">
+        <!-- Hero -->
+        <section class="py-32 md:py-48 text-center">
+            <div class="inline-block px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] font-bold uppercase tracking-widest mb-6">
+                Next-Gen Infrastructure AI
+            </div>
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-8 leading-[1.1]">
+                Better cities,<br>built by you.
+            </h1>
+            <p class="text-zinc-400 text-lg md:text-xl max-w-xl mx-auto mb-12 leading-relaxed">
+                A high-speed, minimal platform for reporting and tracking urban issues. Simple enough for anyone, powerful enough for authorities.
+            </p>
+            <div class="flex flex-wrap justify-center gap-4">
+                <a href="#report" class="bg-white text-black px-8 py-4 rounded-xl font-bold hover:scale-[1.02] transition-transform">File a Report</a>
+                <a href="#track" class="bg-zinc-900 text-white border border-zinc-800 px-8 py-4 rounded-xl font-bold hover:bg-zinc-800 transition-all">Track Issue</a>
+            </div>
+        </section>
+
+        <!-- Reporting Section -->
+        <section id="report" class="py-32 border-t border-zinc-900">
+            <div class="max-w-2xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 tracking-tight">New Report</h2>
+                    <p class="text-zinc-500">Provide the details of the issue below.</p>
+                </div>
+                <form id="issue-form" class="space-y-6">
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Name</label>
+                            <input type="text" id="name" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4 focus:border-zinc-600 focus:ring-0 transition-all outline-none" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Email</label>
+                            <input type="email" id="email" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4 focus:border-zinc-600 outline-none transition-all" required>
+                        </div>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Category</label>
+                            <select id="issue-type" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4 appearance-none outline-none focus:border-zinc-600" required>
+                                <option>Road Repair / Pothole</option>
+                                <option>Garbage / Sanitation</option>
+                                <option>Street Lighting</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Urgency</label>
+                            <select id="severity" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4 appearance-none outline-none focus:border-zinc-600" required>
+                                <option>Low</option>
+                                <option>Medium</option>
+                                <option>High / Urgent</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Photo</label>
+                        <input type="file" id="issue-image" accept="image/*" class="w-full bg-zinc-900/50 border-2 border-dashed border-zinc-800 rounded-xl p-8 text-center text-sm text-zinc-500 hover:border-zinc-700 transition-all cursor-pointer" required>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Description</label>
+                        <textarea id="description" rows="3" class="w-full bg-zinc-900 border border-zinc-800 rounded-xl p-4 outline-none focus:border-zinc-600" required></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-zinc-500 uppercase tracking-widest mb-2">Location</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="address" class="flex-grow bg-zinc-900 border border-zinc-800 rounded-xl p-4 outline-none focus:border-zinc-600" placeholder="Landmark or Address" required>
+                            <button type="button" id="get-location" class="bg-zinc-800 p-4 rounded-xl hover:bg-zinc-700 transition-colors">📍</button>
+                        </div>
+                        <p id="location-display" class="text-[10px] font-mono text-blue-400 mt-2"></p>
+                    </div>
+                    <button type="submit" class="w-full bg-white text-black font-bold p-5 rounded-xl hover:bg-zinc-200 transition-all">Submit Secure Report</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Tracking Section -->
+        <section id="track" class="py-32 border-t border-zinc-900">
+            <div class="max-w-3xl mx-auto">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 tracking-tight">Track Issue</h2>
+                    <p class="text-zinc-500">Real-time status and AI verification.</p>
+                </div>
+                <div class="flex gap-3 mb-12">
+                    <input type="text" id="complaint-id" class="flex-grow bg-zinc-900 border border-zinc-800 rounded-xl p-4 outline-none focus:border-zinc-600" placeholder="Enter Ticket ID (e.g. CIV-...)">
+                    <button id="track-btn" class="bg-blue-600 text-white font-bold px-8 rounded-xl hover:bg-blue-500 transition-colors">Track</button>
+                </div>
+                <div id="status-results" class="space-y-12">
+                    <!-- Dynamic content -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- CivicBot -->
+    <button id="bot-trigger" class="fixed bottom-8 right-8 z-50 bg-blue-600 text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-transform font-bold flex items-center gap-2">
+        <span class="text-sm">💬 Ask CivicBot</span>
+    </button>
+
+    <div id="bot-container" class="hidden fixed bottom-24 right-8 w-[380px] h-[550px] bg-black border border-zinc-800 rounded-3xl z-50 flex flex-col overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)]">
+        <div class="p-4 border-b border-zinc-900 bg-zinc-950 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span class="text-xs font-bold uppercase tracking-widest text-zinc-400">CivicBot Intelligence</span>
+            </div>
+            <button id="close-bot" class="text-zinc-500 hover:text-white text-xl">×</button>
+        </div>
+        <div id="bot-messages" class="flex-grow overflow-y-auto p-4 flex flex-col gap-4 text-sm">
+            <div class="bot-msg-ai">Hello. I am CivicBot. How can I help you today?</div>
+        </div>
+        <div id="bot-suggestions" class="hidden p-3 flex flex-wrap gap-2 border-t border-zinc-900 bg-zinc-950/50"></div>
+        <div class="p-4 border-t border-zinc-900 bg-zinc-950">
+            <div class="flex gap-2 items-center">
+                <input type="file" id="bot-file-input" class="hidden">
+                <button id="bot-upload-trigger" class="text-xl p-2 text-zinc-500 hover:text-white">📷</button>
+                <input type="text" id="bot-input" class="flex-grow bg-zinc-900 border border-zinc-800 rounded-xl p-2 px-4 text-xs outline-none focus:border-zinc-600" placeholder="Type command...">
+                <button id="bot-send" class="bg-blue-600 text-white p-2 px-4 rounded-xl text-xs font-bold">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="py-24 border-t border-zinc-900 text-center">
+        <p class="text-xs font-bold uppercase tracking-widest text-zinc-600">&copy; 2025 CivicReport. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
